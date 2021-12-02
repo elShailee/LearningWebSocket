@@ -1,32 +1,20 @@
-import { AppContainer, Button } from './styles';
-
-let ws = null;
-
-const connect = () => {
-	ws = new WebSocket('ws://localhost:4000');
-
-	ws.onopen = () => {
-		console.log('OPEN');
-	};
-
-	ws.onclose = () => {
-		console.log('CLOSED');
-		connect();
-	};
-
-	ws.onmessage = message => console.log('message recieved: ' + message.data);
-};
-
-connect();
-
-const sendMessage = () => {
-	ws?.send('banana');
-};
+import { useState } from 'react';
+import PollingScreen from './Screens/PollingScreen';
+import SocketScreen from './Screens/SocketScreen';
+import { Button } from './Screens/styles';
+import { AppContainer } from './styles';
 
 function App() {
+	const [connectionState, setConnectionState] = useState('polling');
+
+	const switchConnectionsState = () => {
+		setConnectionState(connectionState === 'socket' ? 'polling' : 'socket');
+	};
 	return (
 		<AppContainer>
-			<Button onClick={sendMessage}>Some content</Button>
+			Connection Protocol: {connectionState}
+			<Button onClick={switchConnectionsState}>Switch Connection Protocol</Button>
+			{connectionState === 'socket' ? <SocketScreen /> : <PollingScreen />}
 		</AppContainer>
 	);
 }

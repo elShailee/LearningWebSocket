@@ -13,8 +13,3 @@ export const AppContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
-
-export const Button = styled.button`
-	width: 25%;
-	margin: 0.25vmin;
-`;
