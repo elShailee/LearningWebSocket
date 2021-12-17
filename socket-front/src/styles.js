@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
 	background-color: magenta;
 	width: 100vmin;
 	height: 100vmin;
-	border: 180px solid darkmagenta;
+	border: 30vmin solid darkmagenta;
 	box-sizing: border-box;
 	margin: auto;
 	display: flex;
